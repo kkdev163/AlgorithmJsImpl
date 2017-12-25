@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script src='./vue.js'></script>
+  <script src='./sorting.js'></script>
+</head>
+<body>
+  <div id='app'>
+    {{arr}}
+  </div>
+  <script type="text/javascript">
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          arr: []
+        }
+      },
+      mounted() {
+        // for (var i = 0; i < 100; i++) {
+        //   Vue.set(this.arr, i, Num.prototype.randomNum(100))
+        // }
+        // arr.toString = function() {
+
+        // }
+        // console.log('beforeSorting')
+        // window.sorting.show(this.arr)
+        // window.sorting.selectSorting(this.arr)
+        // console.log('afterSorting, isSorted:', window.sorting.isSort(this.arr))
+        // window.sorting.show(this.arr)
+
+        sortCompare.main(sorting.insertSorting, sorting.selectSorting, 1000, 500)
+      }
+    })
+  </script>
+</body>
+</html>
