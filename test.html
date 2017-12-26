@@ -7,23 +7,45 @@
 </head>
 <body>
   <div id='app'>
-    {{arr}}
+    <div v-for='sort in sorting'>
+      {{sort}}
+      <button @click='testSorting(sort)'>test</button>
+    </div>
+    规模<input v-model='N'>
+    重复次数<input v-model='T'>
+    <p>
+      {{testing ? '排序中':'等待'}}
+    </p>
+    <p>
+      {{result}}
+    </p>
   </div>
   <script type="text/javascript">
     new Vue({
       el: '#app',
       data() {
         return {
-          arr: []
+          sorting: ['selectSorting', 'insertSorting','bubbleSorting','shellSorting'],
+          testing: false,
+          result: '',
+          N: 1000,
+          T: 100
         }
       },
-      mounted() {
-        // for (var i = 0; i < 10; i++) {
-        //   Vue.set(this.arr, i, Num.prototype.randomNum(100))
-        // }
-        //window.sorting.shellSorting(this.arr)
-        sortCompare.test(sorting.shellSorting, 20000, 100)
-        //sortCompare.main(sorting.shellSorting, sorting.selectSorting, 1000, 100)
+      methods: {
+        testSorting(sort){
+          this.testing = true;
+          this.result = ''
+          setTimeout(()=>{
+            var t1 = sortCompare.test(sorting[sort], this.N, this.T)
+            var t2 = sortCompare.test(sorting[sort], this.N*2, this.T)
+            this.result = `${sort}在规模N=${this.N}时的耗时为${t1}ms, 在N=${2*this.N}规模下的耗时为${t2}ms.\n通过本次测试结果计算得到复杂度约为N的${(Math.log(t2/t1) / Math.log(2)).toFixed(2)}次方`
+            if(this.N<1000) {
+              this.result +='\n由于规模较小，所得误差会较大'
+            }
+            this.testing = false;
+          }, 200)
+        }
       }
     })
   </script>

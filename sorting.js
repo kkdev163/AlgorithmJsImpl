@@ -102,7 +102,7 @@ window.sortCompare = {
   },
   test(alg1, N , T) {
     var t1 = this.timeRandomInput(alg1, N, T)
-    console.log(` ${alg1.name} cost: ${t1}` )
+    return t1
   }
 }
 
