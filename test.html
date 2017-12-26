@@ -18,19 +18,12 @@
         }
       },
       mounted() {
-        // for (var i = 0; i < 100; i++) {
+        // for (var i = 0; i < 10; i++) {
         //   Vue.set(this.arr, i, Num.prototype.randomNum(100))
         // }
-        // arr.toString = function() {
-
-        // }
-        // console.log('beforeSorting')
-        // window.sorting.show(this.arr)
-        // window.sorting.selectSorting(this.arr)
-        // console.log('afterSorting, isSorted:', window.sorting.isSort(this.arr))
-        // window.sorting.show(this.arr)
-
-        sortCompare.main(sorting.insertSorting, sorting.selectSorting, 1000, 500)
+        //window.sorting.shellSorting(this.arr)
+        sortCompare.test(sorting.shellSorting, 20000, 100)
+        //sortCompare.main(sorting.shellSorting, sorting.selectSorting, 1000, 100)
       }
     })
   </script>

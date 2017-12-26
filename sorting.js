@@ -44,6 +44,32 @@ window.sorting = {
         this.exch(arr, j, j-1)
       }
     }
+  },
+  // 冒泡排序
+  bubbleSorting: function(arr) {
+    for (var i = 0; i < arr.length; i++) {
+      for (var j = arr.length-1; j > i; j--) {
+        if (this.less(arr[j], arr[j-1])) {
+          this.exch(arr, j ,j-1)
+        }
+      }
+    }
+  },
+  // 希尔排序
+  shellSorting: function(arr) {
+    let N = arr.length
+    let n = 1
+    while(n < N/3) {
+      n = n * 3 +1  // 1, 4, 13, 40...
+    } 
+    while(n>=1) {
+      for (var i = n; i < arr.length; i++) {
+        for (var j = i; j>=n && this.less(arr[j], arr[j-n]); j-=n) {
+          this.exch(arr, j, j-n)
+        }
+      }
+      n = parseInt(n/3)
+    }
   }
 }
 
@@ -60,7 +86,9 @@ window.sortCompare = {
       for (var i = 0; i < N; i++) {
         arr[i] = Num.prototype.randomNum(1)
       }
+      // console.log(alg.name, arr)
       total += this.time(alg, arr)
+      // console.log(arr)
       Num.prototype.clearPool()
     }
     return total
@@ -71,6 +99,10 @@ window.sortCompare = {
     console.log(` ${alg1.name} cost: ${t1}` )
     console.log(` ${alg2.name} cost: ${t2}` )
     console.log(`For ${N} random ${alg1.name} is ${t2/t1} times faster than ${alg2.name}`)
+  },
+  test(alg1, N , T) {
+    var t1 = this.timeRandomInput(alg1, N, T)
+    console.log(` ${alg1.name} cost: ${t1}` )
   }
 }
 
